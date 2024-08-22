@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Handsome {
     public static void main(String[] args) {
         /* String logo = " ____        _        \n"
@@ -6,9 +8,20 @@ public class Handsome {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n"; */
 
-
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Handsome\nWhat can I do for you?\n");
-        System.out.println("Bye. Hope to see you again soon!");
 
+        //for the echo
+        while (true) {
+            String input = scanner.nextLine();
+
+            if (input.equals("bye")) {
+                System.out.println("Bye, it was an amazing conversation!");
+                break;
+            }
+
+            System.out.println(input);
+
+        }
     }
 }
