@@ -85,6 +85,7 @@ public class Handsome {
         System.out.println("Looking productive! I have added: \n" + task.toString());
         System.out.println("Seems like the task count is " + dataCount + ", don't overwork youself okie?");
     }
+
     private static void printList() {
         System.out.println("Hey, here are the tasks you have!");
         for (int i = 0; i < dataCount; i++) {
