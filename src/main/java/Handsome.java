@@ -19,7 +19,6 @@ public class Handsome {
                 System.out.println("Bye, it was an amazing conversation!");
                 break;
             }
-
             System.out.println(input);
 
         }
