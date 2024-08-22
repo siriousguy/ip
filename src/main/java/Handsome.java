@@ -71,13 +71,19 @@ public class Handsome {
         }
     }
 
+    // route the task adding through this error checker first
+    private static void toDoCheck(String des) throws HandsomeException {
+        if (des.isEmpty()) {
+            throw new HandsomeException("Hey man, give me a description to work with?");
+        }
+        addTask(new ToDo(des));
+    }
     private static void addTask(Task task) {
         data[dataCount] = task;
         dataCount++;
         System.out.println("Looking productive! I have added: \n" + task.toString());
         System.out.println("Seems like the task count is " + dataCount + ", don't overwork youself okie?");
     }
-
     private static void printList() {
         System.out.println("Hey, here are the tasks you have!");
         for (int i = 0; i < dataCount; i++) {
@@ -96,8 +102,13 @@ public class Handsome {
         System.out.println(data[taskNum].toString());
     }
 
+    public static class HandsomeException extends Exception {
+        public HandsomeException(String error) {
+            super(error);
+        }
+    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws HandsomeException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Handsome\nWhat can I do for you?\n");
 
@@ -124,21 +135,30 @@ public class Handsome {
                     break;
 
                 case "todo":
+                    if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                        throw new HandsomeException("Hey man... give me a descriptor to work with?");
+                    }
                     addTask(new ToDo(specifiedInput[1]));
                     break;
 
                 case "deadline":
+                    if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                        throw new HandsomeException("Hey man... give me a descriptor to work with?");
+                    }
                     String[] taskAndTime = input.split(" /by ", 2);
                     addTask(new Deadline(taskAndTime[0], taskAndTime[1]));
                     break;
 
                 case "event":
+                    if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                        throw new HandsomeException("Hey man... give me a descriptor to work with?");
+                    }
                     String[] fromAndTo = specifiedInput[1].split(" /from | /to ");
                     addTask(new Event(fromAndTo[0], fromAndTo[1], fromAndTo[2]));
                     break;
 
                 default:
-                    System.out.println("Hey handsome, unfortunately I dont know what you are saying");
+                    System.out.println("Hey handsome, unfortunately I dont know what you are saying :( ");
                     break;
 
             }
