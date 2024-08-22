@@ -24,33 +24,76 @@ public class Handsome {
         public void markAsUndone() {
             this.isDone = false;
         }
-        public String printTaskStatus() {
+
+        @Override
+        public String toString() {
             return ("[" + this.getStatusIcon() + "] " + this.description);
         }
     }
 
-    private static void addTask(String des) {
-        data[dataCount] = new Task(des);
+    public static class ToDo extends Task {
+        public ToDo(String description) {
+            super(description);
+        }
+        @Override
+        public String toString() {
+            return "[T]" + super.toString();
+        }
+    }
+
+    public static class Deadline extends Task {
+        protected String by;
+
+        public Deadline(String des, String by) {
+            super(des.split(" ", 2)[1]);
+            this.by = by;
+        }
+
+        @Override
+        public String toString() {
+            return "[D]" + super.toString() + " (by: " + by + ")";
+        }
+    }
+
+    public static class Event extends Task {
+        protected String from;
+        protected String to;
+
+        public Event(String des, String from, String to) {
+            super(des);
+            this.from = from;
+            this.to = to;
+        }
+
+        @Override
+        public String toString() {
+            return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        }
+    }
+
+    private static void addTask(Task task) {
+        data[dataCount] = task;
         dataCount++;
-        System.out.println("added: " + des);
+        System.out.println("Looking productive! I have added: \n" + task.toString());
+        System.out.println("Seems like the task count is " + dataCount + ", don't overwork youself okie?");
     }
 
     private static void printList() {
         System.out.println("Hey, here are the tasks you have!");
         for (int i = 0; i < dataCount; i++) {
-            System.out.println((i + 1) + "." + data[i].printTaskStatus());
+            System.out.println((i + 1) + "." + data[i].toString());
         }
     }
     private static void markDone(int taskNum) {
         data[taskNum].markAsDone();
         System.out.println("Congrats, you finally finished this task!");
-        System.out.println(data[taskNum].printTaskStatus());
+        System.out.println(data[taskNum].toString());
     }
 
     private static void markUndone(int taskNum) {
         data[taskNum].markAsUndone();
         System.out.println("Hey, the task is not done but time to stop procrastinating?");
-        System.out.println(data[taskNum].printTaskStatus());
+        System.out.println(data[taskNum].toString());
     }
 
 
@@ -80,8 +123,22 @@ public class Handsome {
                     markUndone(Integer.parseInt(specifiedInput[1]) - 1);
                     break;
 
+                case "todo":
+                    addTask(new ToDo(specifiedInput[1]));
+                    break;
+
+                case "deadline":
+                    String[] taskAndTime = input.split(" /by ", 2);
+                    addTask(new Deadline(taskAndTime[0], taskAndTime[1]));
+                    break;
+
+                case "event":
+                    String[] fromAndTo = specifiedInput[1].split(" /from | /to ");
+                    addTask(new Event(fromAndTo[0], fromAndTo[1], fromAndTo[2]));
+                    break;
+
                 default:
-                    addTask(input);
+                    System.out.println("Hey handsome, unfortunately I dont know what you are saying");
                     break;
 
             }
