@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Handsome {
-    private static final Task[] data = new Task[100];
+    private static final ArrayList<Task> data = new ArrayList<>();
     private static int dataCount = 0;
 
     public static class Task {
@@ -71,15 +71,16 @@ public class Handsome {
         }
     }
 
-    // route the task adding through this error checker first
+
+    /* route the task adding through this error checker first
     private static void toDoCheck(String des) throws HandsomeException {
         if (des.isEmpty()) {
             throw new HandsomeException("Hey man, give me a description to work with?");
         }
-        addTask(new ToDo(des));
-    }
+    } */
+
     private static void addTask(Task task) {
-        data[dataCount] = task;
+        data.add(task);
         dataCount++;
         System.out.println("Looking productive! I have added: \n" + task.toString());
         System.out.println("Seems like the task count is " + dataCount + ", don't overwork youself okie?");
@@ -87,19 +88,34 @@ public class Handsome {
     private static void printList() {
         System.out.println("Hey, here are the tasks you have!");
         for (int i = 0; i < dataCount; i++) {
-            System.out.println((i + 1) + "." + data[i].toString());
+            System.out.println((i + 1) + "." + data.get(i).toString());
         }
     }
     private static void markDone(int taskNum) {
-        data[taskNum].markAsDone();
+        data.get(taskNum).markAsDone();
         System.out.println("Congrats, you finally finished this task!");
-        System.out.println(data[taskNum].toString());
+        System.out.println(data.get(taskNum).toString());
     }
 
     private static void markUndone(int taskNum) {
-        data[taskNum].markAsUndone();
+        data.get(taskNum).markAsUndone();
         System.out.println("Hey, the task is not done but time to stop procrastinating?");
-        System.out.println(data[taskNum].toString());
+        System.out.println(data.get(taskNum).toString());
+    }
+
+    private static void deleteCheck(String[] des) throws HandsomeException {
+        if (des.length < 2 ) {
+            throw new HandsomeException("Hey, please let me know the task that you want to delete.");
+        }
+        int taskNum = Integer.parseInt(des[1]) - 1;
+        if (taskNum > data.size()) {
+            throw new HandsomeException("Hey, that task simply... does not exist.");
+        }
+        // temporarily store task so i can let user know what is deleted
+        Task removedTask = data.remove(taskNum);
+        System.out.println("Well... I have removed the task: \n" + removedTask);
+        System.out.println("Now you have " + data.size() + " count of tasks left to do");
+        dataCount--; // admittedly, I should change these to sizes... but I dont want bugs for now
     }
 
     public static class HandsomeException extends Exception {
@@ -155,6 +171,10 @@ public class Handsome {
                     }
                     String[] fromAndTo = specifiedInput[1].split(" /from | /to ");
                     addTask(new Event(fromAndTo[0], fromAndTo[1], fromAndTo[2]));
+                    break;
+
+                case "delete":
+                    deleteCheck(specifiedInput);
                     break;
 
                 default:
