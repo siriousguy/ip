@@ -138,6 +138,7 @@ public class Handsome {
                 break;
             }
 
+
             switch (specifiedInput[0]) {
                 case "list":
                     printList();
