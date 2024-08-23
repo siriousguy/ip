@@ -1,2 +1,4 @@
-"Hey handsome, unfortunately I dont know what you are saying"
+Hello! I'm Handsome
+What can I do for you?
 
+Bye, it was an amazing conversation!
