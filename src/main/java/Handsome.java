@@ -83,7 +83,7 @@ public class Handsome {
         data.add(task);
         dataCount++;
         System.out.println("Looking productive! I have added: \n" + task.toString());
-        System.out.println("Seems like the task count is " + dataCount + ", don't overwork youself okie?");
+        System.out.println("Seems like the task count is " + dataCount + ", don't overwork yourself okie?");
     }
 
     private static void printList() {
