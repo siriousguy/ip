@@ -1,47 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import task.Task;
+import task.ToDo;
+
+/**
+ * Chatbot that is able to differentiate tasks
+ */
 public class Handsome {
     private static final ArrayList<Task> data = new ArrayList<>();
-    private static int dataCount = 0;
-
-    public static class Task {
-        protected String description;
-        protected boolean isDone;
-
-        public Task(String description) {
-            this.description = description;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return (isDone ? "X" : " ");
-        }
-
-        public void markAsDone() {
-            this.isDone = true;
-        }
-
-        public void markAsUndone() {
-            this.isDone = false;
-        }
-
-        @Override
-        public String toString() {
-            return ("[" + this.getStatusIcon() + "] " + this.description);
-        }
-    }
-
-    public static class ToDo extends Task {
-        public ToDo(String description) {
-            super(description);
-        }
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
-        }
-    }
-
     public static class Deadline extends Task {
         protected String by;
 
@@ -72,7 +39,6 @@ public class Handsome {
         }
     }
 
-
     /* route the task adding through this error checker first
     private static void toDoCheck(String des) throws HandsomeException {
         if (des.isEmpty()) {
@@ -82,14 +48,12 @@ public class Handsome {
 
     private static void addTask(Task task) {
         data.add(task);
-        dataCount++;
         System.out.println("Looking productive! I have added: \n" + task.toString());
-        System.out.println("Seems like the task count is " + dataCount + ", don't overwork yourself okie?");
+        System.out.println("Seems like the task count is " + data.size() + ", don't overwork yourself okie?");
     }
-
     private static void printList() {
         System.out.println("Hey, here are the tasks you have!");
-        for (int i = 0; i < dataCount; i++) {
+        for (int i = 0; i < data.size(); i++) {
             System.out.println((i + 1) + "." + data.get(i).toString());
         }
     }
@@ -117,7 +81,6 @@ public class Handsome {
         Task removedTask = data.remove(taskNum);
         System.out.println("Well... I have removed the task: \n" + removedTask);
         System.out.println("Now you have " + data.size() + " count of tasks left to do");
-        dataCount--; // admittedly, I should change these to sizes... but I dont want bugs for now
     }
 
     public static class HandsomeException extends Exception {
