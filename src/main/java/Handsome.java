@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import task.Task;
 import task.ToDo;
-
 /**
  * Chatbot that is able to differentiate tasks
  */
