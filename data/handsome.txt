@@ -1,8 +1,3 @@
-T | 1 | work
-E | 0 | have fun | null | null
-D | 0 | more work | null
-T | 1 | chill a bit
-D | 0 | more more more work | null
-T | 0 | work
-D | 0 | work | null
-E | 0 | more work | 2024-09-09T18:00 | 2024-09-10T18:00
+T | 0 | cry
+D | 0 | lol | 2023-09-09 1900
+E | 1 | study even more! | 2024-09-04 1000 | 2024-09-09 1000

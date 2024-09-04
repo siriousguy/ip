@@ -10,11 +10,17 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.format.DateTimeFormatter;
+
 public class Storage {
     private final String filePath;
+
+    private static final DateTimeFormatter DESIRED_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -102,13 +108,13 @@ public class Storage {
             storedTask.append("D");
             storedTask.append(" | ").append(task.isDone ? "1" : "0");
             storedTask.append(" | ").append(task.description);
-            storedTask.append(" | ").append(((Deadline) task).by);
+            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Deadline) task).by));
         } else if (task instanceof Event) {
             storedTask.append("E");
             storedTask.append(" | ").append(task.isDone ? "1" : "0");
             storedTask.append(" | ").append(task.description);
-            storedTask.append(" | ").append(((Event) task).from);
-            storedTask.append(" | ").append(((Event) task).to);
+            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Event) task).from));
+            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Event) task).to));
         }
         return storedTask.toString();
     }
