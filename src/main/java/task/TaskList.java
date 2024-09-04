@@ -49,6 +49,22 @@ public class TaskList {
         Ui.show("Now you have " + tasks.size() + " count of tasks left to do");
     }
 
+    /**
+     * Finds the corresponding tasks based on the keyword the user inputs.
+     *
+     * @param keyword word that the user wants to find.
+     * @return a list of those tasks with the keyword.
+     */
+    public List<Task> findTasks(String keyword) {
+        List<Task> matchedTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.description.contains(keyword)) {
+                matchedTasks.add(task);
+            }
+        }
+        return matchedTasks;
+    }
+
     public List<Task> getTasks() {
         return this.tasks;
     }

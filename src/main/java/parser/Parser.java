@@ -44,6 +44,12 @@ public class Parser {
             case "delete":
                 return new DeleteCommand(Integer.parseInt(specifiedInput[1]) - 1);
 
+            case "find":
+                if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                    throw new HandsomeException("Hey.. please give me a keyword to search for.");
+                }
+                return new FindCommand(specifiedInput[1]);
+
             case "bye":
                 return new ExitCommand();
 
