@@ -1,0 +1,5 @@
+T | 1 | work
+D | 0 | more work | sunday
+D | 1 | to cry a lot | sunday
+E | 1 | work out with friend | mon | sun
+T | 0 | alot more work man...
