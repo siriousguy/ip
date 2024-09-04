@@ -128,6 +128,7 @@ public class Handsome {
         }
         scanner.close();
     }
+
     private static void saveToFile() {
         try {
             storage.save(data);
