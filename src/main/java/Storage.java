@@ -17,7 +17,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Storage {
     private final String filePath;
-
     private static final DateTimeFormatter DESIRED_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
     public Storage(String filePath) {
