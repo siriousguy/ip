@@ -1,12 +1,29 @@
 package parser;
 
-import commands.*;
+import commands.Command;
+import commands.AddCommand;
+import commands.DeleteCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.UnmarkCommand;
+
 import exceptions.HandsomeException;
 import task.Deadline;
 import task.Event;
 import task.ToDo;
 
+/**
+ * Scans through the command that the users give.
+ */
 public class Parser {
+    /**
+     * Starts the parsing process.
+     *
+     * @param input registers the user's commands.
+     * @return the corresponding actions for the command.
+     * @throws HandsomeException for handsome specific exceptions.
+     */
     public static Command parse(String input) throws HandsomeException {
         String[] specifiedInput = input.split(" ", 2); // for mark 2 etc.
         String command = specifiedInput[0];

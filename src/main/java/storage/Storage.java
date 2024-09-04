@@ -92,6 +92,7 @@ public class Storage {
     }
 
     /**
+     * Writes the tasks onto the file.
      *
      * @param task which has been written
      * @return task onto the handsome.txt file
@@ -117,14 +118,4 @@ public class Storage {
         }
         return storedTask.toString();
     }
-//
-//    private static void saveToFile() {
-//        try {
-//            storage.save(data);
-//            System.out.println("Hey man, I got you; the tasks are saved handsomely!");
-//        } catch (IOException e) {
-//            System.out.println("Well... I failed to save tasks: " + e.getMessage());
-//        }
-//    }
-
 }

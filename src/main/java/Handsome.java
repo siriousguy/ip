@@ -8,13 +8,18 @@ import ui.Ui;
 import java.io.IOException;
 
 /**
- * Chatbot that is able to differentiate tasks
+ * Represents a chatbot that is able to handle user inputs.
  */
 public class Handsome {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a Handsome instance.
+     *
+     * @param filePath the relative path to where the files are saved. If not present, a new file will be made.
+     */
     public Handsome(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -26,6 +31,9 @@ public class Handsome {
         }
     }
 
+    /**
+     * Initiates the interaction loop.
+     */
     public void run() {
         ui.welcomeUser();
         boolean isExit = false;
@@ -40,7 +48,13 @@ public class Handsome {
             }
         }
     }
-    public static void main(String[] args) throws HandsomeException {
+
+    /**
+     * Marks the main entry point of the application
+     *
+     * @param args command line arguments that are not used
+     */
+    public static void main(String[] args) {
         new Handsome("./data/handsome.txt").run();
     }
 }
