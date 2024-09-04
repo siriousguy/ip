@@ -1,0 +1,7 @@
+        try {
+            data = (ArrayList<Task>) storage.load();
+            System.out.println("Of course I managed to load the tasks!");
+        } catch (IOException e) {
+            System.out.println("Well... I failed to load tasks: " + e.getMessage());
+            data = new ArrayList<>();
+        }

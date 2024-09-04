@@ -1,3 +1,5 @@
+package storage;
+
 import task.Event;
 import task.ToDo;
 import task.Task;
@@ -115,4 +117,14 @@ public class Storage {
         }
         return storedTask.toString();
     }
+//
+//    private static void saveToFile() {
+//        try {
+//            storage.save(data);
+//            System.out.println("Hey man, I got you; the tasks are saved handsomely!");
+//        } catch (IOException e) {
+//            System.out.println("Well... I failed to save tasks: " + e.getMessage());
+//        }
+//    }
+
 }
