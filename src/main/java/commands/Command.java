@@ -20,7 +20,7 @@ public abstract class Command {
      * @throws IOException in the event the operation fails.
      * @throws HandsomeException for errors specific to Handsome.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, HandsomeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, HandsomeException;
 
     /**
      * Indicates whether this command will cause the application to exit.

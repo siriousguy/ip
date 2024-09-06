@@ -13,8 +13,9 @@ public class UnmarkCommand extends Command {
         this.taskNum = taskNum;
     }
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
-        tasks.markUndone(taskNum);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
+        String undone = tasks.markUndone(taskNum);
         storage.save(tasks.getTasks());
+        return undone;
     }
 }

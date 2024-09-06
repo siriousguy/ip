@@ -7,6 +7,7 @@ import commands.ExitCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.UnmarkCommand;
+import commands.FindCommand;
 
 import exceptions.HandsomeException;
 import task.Deadline;

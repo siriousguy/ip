@@ -6,8 +6,8 @@ import ui.Ui;
 
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "Hey it has been a nice conversation, good day ahead!";
     }
 
     @Override

@@ -29,12 +29,10 @@ public class Ui {
     }
 
     /**
-     * Returns a formatted line to separate different parts.
-     *
-     * @return Formatted line.
+     * Displays a formatted line to separate different parts.
      */
-    public String showLine() {
-        return "___________________________________________________________________________";
+    public void showLine() {
+        System.out.println("___________________________________________________________________________");
     }
 
     /**

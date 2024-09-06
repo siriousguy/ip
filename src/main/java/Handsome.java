@@ -57,4 +57,21 @@ public class Handsome {
     public static void main(String[] args) {
         new Handsome("./data/handsome.txt").run();
     }
+
+    /**
+     * Returns Handsome response to the user's input.
+     *
+     * @param input The user's input.
+     * @return Handsome's response.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (HandsomeException e) {
+            return e.getMessage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
