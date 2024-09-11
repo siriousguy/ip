@@ -28,6 +28,7 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
+        assert file.exists() : "Well... This file surprisingly, does not exist";
         // create the txt file if it does not exist
         if (!file.exists()) {
             file.getParentFile().mkdirs();

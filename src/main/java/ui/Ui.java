@@ -55,6 +55,7 @@ public class Ui {
      * @param message The desired message to be displayed.
      */
     public static void show(String message) {
+        assert message != null : "Well, I can't exactly show nothing can I?";
         System.out.println(message);
     }
 

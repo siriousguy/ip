@@ -15,6 +15,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws IOException, HandsomeException {
+        assert taskNum >= 0 && taskNum <= tasks.getTasks().size() : "Hey there, try a number within range?";
         String deletedTask = tasks.deleteCheck(this.taskNum);
         storage.save(tasks.getTasks());
         return deletedTask;
