@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-//    private static final ArrayList<Task> data = new ArrayList<>();
     private final List<Task> tasks;
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -14,12 +13,14 @@ public class TaskList {
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
+
     public String addTask(Task task) {
         assert task != null : "Well... Does it really make sense to add nothing?";
         tasks.add(task);
         return "Looking productive! I have added: \n" + task.toString() +
                 ("\nSeems like the task count is " + tasks.size() + ", don't overwork yourself wookie?");
     }
+
     public String printList() {
         StringBuilder sb = new StringBuilder();
         sb.append("Hey, here are the tasks you have!\n");
@@ -28,6 +29,7 @@ public class TaskList {
         }
         return sb.toString();
     }
+
     public String markDone(int taskNum) {
         tasks.get(taskNum).markAsDone();
         return "Congrats, you finally finished this task!" + (tasks.get(taskNum).toString());
@@ -44,8 +46,8 @@ public class TaskList {
         }
         // temporarily store task to let user know what is deleted
         Task removedTask = tasks.remove(taskNum);
-        return ("Well... I have removed the task: \n" + removedTask) +
-                ("\nNow you have " + tasks.size() + " count of tasks left to do");
+        return ("Well... I have removed the task: \n" + removedTask)
+                + ("\nNow you have " + tasks.size() + " count of tasks left to do");
     }
 
     /**
@@ -67,5 +69,4 @@ public class TaskList {
     public List<Task> getTasks() {
         return this.tasks;
     }
-
 }
