@@ -28,6 +28,7 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
 
+        assert file.exists() : "Well... This file surprisingly, does not exist";
         // create the txt file if it does not exist
         if (!file.exists()) {
             file.getParentFile().mkdirs();
@@ -83,6 +84,7 @@ public class Storage {
     }
 
     public void save(List<Task> tasks) throws IOException {
+        assert tasks != null : "Hey man, the task list should not be null.";
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         for (Task task : tasks) {
             writer.write(taskToFile(task));
@@ -99,6 +101,8 @@ public class Storage {
      */
     private String taskToFile(Task task) {
         StringBuilder storedTask = new StringBuilder();
+
+        assert task != null : "Well, seems like I'm writing a null file.";
 
         if (task instanceof ToDo) {
             storedTask.append("T");

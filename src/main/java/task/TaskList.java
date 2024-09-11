@@ -15,6 +15,7 @@ public class TaskList {
         this.tasks = tasks;
     }
     public String addTask(Task task) {
+        assert task != null : "Well... Does it really make sense to add nothing?";
         tasks.add(task);
         return "Looking productive! I have added: \n" + task.toString() +
                 ("\nSeems like the task count is " + tasks.size() + ", don't overwork yourself wookie?");
