@@ -13,7 +13,6 @@ import javafx.scene.Node;
 import java.io.IOException;
 
 public class DialogBox extends HBox {
-
     @FXML
     private Label dialog;
 
@@ -29,7 +28,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }
