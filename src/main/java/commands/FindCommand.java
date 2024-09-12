@@ -7,6 +7,7 @@ import storage.Storage;
 import exceptions.HandsomeException;
 
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Finds the corresponding tasks with the keyword requested by the user.
@@ -19,7 +20,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws HandsomeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage,
+                          Stack<Command> commandRecords) throws HandsomeException {
         List<Task> matchedTasks = tasks.findTasks(keyword);
         if (matchedTasks.isEmpty()) {
             return "Sadly, no matching tasks found.";
@@ -31,5 +33,10 @@ public class FindCommand extends Command {
             }
             return sb.toString();
         }
+    }
+
+    @Override
+    public String undo(TaskList taskList, Ui ui, Storage storage) {
+        return "Well... what do you think you will get from undoing a find?";
     }
 }

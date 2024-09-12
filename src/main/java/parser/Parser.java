@@ -1,13 +1,6 @@
 package parser;
 
-import commands.Command;
-import commands.AddCommand;
-import commands.DeleteCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.MarkCommand;
-import commands.UnmarkCommand;
-import commands.FindCommand;
+import commands.*;
 
 import exceptions.HandsomeException;
 import task.Deadline;
@@ -72,6 +65,9 @@ public class Parser {
 
             case "bye":
                 return new ExitCommand();
+
+            case "undo":
+                return new UndoCommand();
 
             default:
                 System.out.println("Hey handsome, unfortunately I don't know what you are saying :( ");
