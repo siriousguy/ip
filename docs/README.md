@@ -22,6 +22,7 @@ expected output
 
 ## Adding events
 
+Allows the user to add an event.
 // Feature details
 
 ## List
