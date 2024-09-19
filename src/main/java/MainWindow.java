@@ -25,9 +25,9 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     private Handsome handsome;
     private final Image userImage = new Image(Objects.requireNonNull(this.getClass().
-                                        getResourceAsStream("/images/HandsomeUser.png")));
+                                        getResourceAsStream("/images/HandsomeUser2.png")));
     private final Image HandsomeImage = new Image(Objects.requireNonNull(this.getClass().
-                                            getResourceAsStream("/images/HandsomeMan.png")));
+                                            getResourceAsStream("/images/HandsomeMan2.png")));
 
     public MainWindow() {
     }
