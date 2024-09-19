@@ -71,7 +71,7 @@ public class Parser {
 
             default:
                 System.out.println("Hey handsome, unfortunately I don't know what you are saying :( ");
-                throw new HandsomeException("Try better next time with right commands.");
+                throw new HandsomeException("I don't quite understand you, let's revisit the docs?");
         }
     }
 }
