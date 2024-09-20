@@ -23,7 +23,7 @@ public class Task {
      * @return A String representing the task's completion status.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (isDone ? "X" : "  ");
     }
 
     /**

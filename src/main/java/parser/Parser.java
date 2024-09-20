@@ -19,7 +19,10 @@ public class Parser {
      * @throws HandsomeException for handsome specific exceptions.
      */
     public static Command parse(String input) throws HandsomeException {
-        assert !input.isEmpty() : "Hey, the input should not be empty haha";
+        assert !input.isEmpty() : "Hey, the input should not be empty haha.";
+        if (input.trim().isEmpty()) {
+            throw new HandsomeException("Hey, the input should not be empty haha.");
+        }
 
         String[] specifiedInput = input.split(" ", 2); // for mark 2 etc.
         String command = specifiedInput[0];
