@@ -1,6 +1,6 @@
 # Handsome User Guide
 
-// Product screenshot goes here
+![Ui.png](Ui.png)
 
 Need someone to help you? Handsome is here to help! 😉 
 
@@ -18,19 +18,43 @@ All you need to do is,
 4. sit back as you enjoy more free time 🕰️
 
 Features:
-1. [ ] Managing tasks
-2. [ ] Managing deadlines (coming soon)
-3. [ ] Managing events (coming soon)
-## Adding deadlines
+1. [x] Managing tasks
+2. [x] Managing deadlines 
+3. [x] Managing events 
 
-// Describe the action and its outcome.
+## Adding todos
+
+Todo allows you to add a task with an unspecified due date.
 
 The yyyy-MM-dd HHmm format needs to be adhered in order for the chatbot to work.
 
-Example: `keyword (optional arguments)`
+Example: `todo (task)`
 
-// deadline work /by 2024-09-09 1800
+**_sample input:_**
 
+todo assignment 
+
+
+_**sample output:**_
+```
+[T][ ] assignment 
+
+```
+
+## Adding deadlines
+
+Deadlines allow you to add tasks with a specified due date.
+
+The yyyy-MM-dd HHmm format needs to be adhered in order for the chatbot to work.
+
+Example: `deadline (task) /by (yyyy-MM-dd HHmm)`
+
+_**sample input:**_
+
+deadline work /by 2024-09-09 1800
+
+
+_**sample output:**_
 ```
 [D][ ] work (by: Sept 09 2024 18:00)
 
@@ -38,17 +62,61 @@ Example: `keyword (optional arguments)`
 
 ## Adding events
 
-Allows the user to add an event.
+Allows the user to add an event from and to specified times.
 
-// event client meeting /from 2024-09-09 1600 /to 2024-09-09 1800
+The yyyy-MM-dd HHmm format needs to be adhered in order for the chatbot to work.
+
+Example: `event (task) /from (yyyy-MM-dd HHmm) /to (yyyy-MM-dd HHmm)`
+
+_**sample input:**_
+
+event client meeting /from 2024-09-09 1600 /to 2024-09-09 1800
+
+
+_**sample output:**_
+```
+[E][ ] client meeting (from: Sept 09 2024 16:00 to: Sept 09 2024 18:00)
 
 ```
-[E][ ] work (from: Sept 09 2024 16:00 to: Sept 09 2024 18:00)
+## Mark
+Mark allows the user to record a task as completed.
 
-```
+Simply type in "mark" (no quotation marks) and the task number e.g. "5", and that task will be recorded as completed
+by an 'X'.
+
+Example: `mark 5`
+
+## Unmark
+Unmark allows the user to record a task as not completed.
+
+Simply type in "unmark" (no quotation marks) and the task number e.g. "5", and that task will be recorded as not
+completed by ' '.
+
+Example: `unmark 5`
+## Delete
+Delete allows the user to delete a chosen task.
+
+Simply type in "delete" (no quotation marks) and the task number e.g. "5", and that task will be deleted and no longer
+stored.
+
+Example: `delete 5`
 
 ## List
+List allows you to view all of your existing tasks.
 
+Simply enter "list" (without the quotation marks) and Handsome will show you all the tasks you have.
+
+Example: `list`
+## Find
+Find allows the user to find a task with the specified keywords.
+
+It returns a list of corresponding tasks with the specified keywords and if there are no matching tasks, find returns 
+"Sadly, no matching tasks found."
+
+Simply type in "find" (no quotation marks) and the keywords e.g. "more work", and the corresponding tasks will be 
+returned in a list.
+
+Example: `find more work`
 
 ## Undo
 
@@ -57,9 +125,12 @@ Undo allows you to undo the last command that you have given to Handsome!
 Simply enter "undo" (without the quotation marks) and Handsome will revert whatever your last command
 was.
 
+Example: `undo`
 ## Bye
 
 Once you are done with Handsome, just say "bye" and the bot will greet you off!
+
+Example: `bye`
 ## Credits
 https://se-education.org/guides/tutorials/javaFx.html
 
