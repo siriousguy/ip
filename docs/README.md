@@ -1,7 +1,5 @@
 # Handsome User Guide
 
-// Update the title above to match the actual product name
-
 // Product screenshot goes here
 
 // Product intro goes here
@@ -17,20 +15,30 @@ Example: `keyword (optional arguments)`
 // deadline work /by 2024-09-09 1800
 
 ```
-expected output
+[D][] work (by: Sept 09 2024 18:00)
+
 ```
 
 ## Adding events
 
 Allows the user to add an event.
-// Feature details
+
+// event client meeting /from 2024-09-09 1600 /to 2024-09-09 1800
+
+```
+[E][] work (from: Sept 09 2024 16:00 to: Sept 09 2024 18:00)
+
+```
 
 ## List
 
 
 ## Undo
 
-// Feature details
+Undo allows you to undo the last command that you have given to Handsome!
+
+Simply enter "undo" (without the quotation marks) and Handsome will revert whatever your last command
+was.
 
 ## Credits
 https://se-education.org/guides/tutorials/javaFx.html
