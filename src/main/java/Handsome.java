@@ -87,7 +87,6 @@ public class Handsome {
                 }
                 return done;
             }
-
         } catch (HandsomeException e) {
             return e.getMessage();
         } catch (IOException e) {
@@ -95,6 +94,12 @@ public class Handsome {
         }
     }
 
+    /**
+     * Checks if the given command is undoable (Add, Delete, Mark, or Unmark commands).
+     *
+     * @param c The command to check.
+     * @return true if the command can be undone, false otherwise.
+     */
     private boolean undoableCommand(Command c) {
         return c instanceof AddCommand ||
                c instanceof DeleteCommand ||

@@ -22,7 +22,7 @@ Features:
 2. [x] Managing deadlines 
 3. [x] Managing events 
 
-## Adding todos
+## Adding toDos
 
 Todo allows you to add a task with an unspecified due date.
 

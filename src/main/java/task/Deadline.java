@@ -4,9 +4,19 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline task that has a description and a specified due date and time.
+ * The due date and time must be provided in the "yyyy-MM-dd HHmm" format .
+ */
 public class Deadline extends Task {
     public LocalDateTime by;
 
+    /**
+     * Constructs a Deadline task with the specified description and due date and time.
+     *
+     * @param des The description of the deadline task.
+     * @param by The due date and time in the "yyyy-MM-dd HHmm" format.
+     */
     public Deadline(String des, String by) {
         super(des);
         try {

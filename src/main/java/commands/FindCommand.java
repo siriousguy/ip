@@ -15,10 +15,27 @@ import java.util.Stack;
 public class FindCommand extends Command {
     private final String keyword;
 
+    /**
+     * Constructs a FindCommand with the specified keyword.
+     *
+     * @param keyword The keyword to search for in the task list.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes the command by searching the task list for tasks containing the keyword.
+     * If matching tasks are found, they are returned; otherwise, a message indicating
+     * no matches is returned.
+     *
+     * @param tasks The task list to search through.
+     * @param ui The UI object used for displaying messages to the user.
+     * @param storage The storage object, not used in this command.
+     * @param commandRecords A stack of command records, not used in this command.
+     * @return A string representing the list of tasks that match the keyword, or a message if no matches are found.
+     * @throws HandsomeException If an error specific to Handsome occurs during the find operation.
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage,
                           Stack<Command> commandRecords) throws HandsomeException {

@@ -12,7 +12,7 @@ import task.ToDo;
  */
 public class Parser {
     /**
-     * Starts the parsing process.
+     * Starts the parsing process by interpreting the user's inputs.
      *
      * @param input registers the user's commands.
      * @return the corresponding actions for the command.

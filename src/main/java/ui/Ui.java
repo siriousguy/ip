@@ -29,13 +29,6 @@ public class Ui {
     }
 
     /**
-     * Displays a formatted line to separate different parts.
-     */
-    public void showLine() {
-        System.out.println("___________________________________________________________________________");
-    }
-
-    /**
      * Displays a welcome message.
      */
     public void welcomeUser() {
@@ -57,12 +50,5 @@ public class Ui {
     public static void show(String message) {
         assert message != null : "Well, I can't exactly show nothing can I?";
         System.out.println(message);
-    }
-
-    /**
-     * Closes the scanner used for reading user input.
-     */
-    public void closeScanner() {
-        scanner.close();
     }
 }

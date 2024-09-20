@@ -12,18 +12,35 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Handles the loading and saving of tasks to and from the storage file.
+ * The storage is responsible for reading and writing tasks.
+ */
 public class Storage {
     private final String filePath;
     private static final DateTimeFormatter DESIRED_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Constructs a Storage object with the given file path.
+     *
+     * @param filePath The path to the file where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the storage file and returns them as a list of tasks.
+     * If the file does not exist, it creates a new empty file.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws IOException If an I/O error occurs during the loading process.
+     */
     public List<Task> load() throws IOException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -51,19 +68,39 @@ public class Storage {
                 task = new ToDo(des);
                 break;
             case "D":
-                if (taskInfo.length > 3) {
-                    task = new Deadline(des, taskInfo[3]);
-                } else {
-                    System.out.println("Hey man, I am missing info for deadline task in storage file.");
-                    continue;
+//                if (taskInfo.length > 3) {
+//                    task = new Deadline(des, taskInfo[3].equals("Invalid")
+//                                                ? null
+//                                                : taskInfo[3]);
+//                } else {
+//                    System.out.println("Hey man, I am missing info for deadline task in storage file.");
+//                    continue;
+//                }
+                String deadline = taskInfo.length > 3 ? taskInfo[3] : null;
+                try {
+                    task = new Deadline(des, deadline);
+                } catch (DateTimeException e) {
+                    System.out.println("Error parsing deadline date, task added without valid date.");
+                    task = new Deadline(des, null);  // Add without valid date
                 }
                 break;
             case "E":
-                if (taskInfo.length > 4) {
-                    task = new Event(des, taskInfo[3], taskInfo[4]);
-                } else {
-                    System.out.println("Hey man, I am missing info for event task data in storage file.");
-                    continue;
+//                if (taskInfo.length > 4) {
+//                    task = new Event(des,
+//                                taskInfo[3].equals("Invalid") ? null : taskInfo[3],
+//                                taskInfo[4].equals("Invalid") ? null : taskInfo[4]);
+//                } else {
+//                    System.out.println("Hey man, I am missing info for event task data in storage file.");
+//                    continue;
+//                }
+
+                String eventFrom = taskInfo.length > 3 ? taskInfo[3] : null;
+                String eventTo = taskInfo.length > 4 ? taskInfo[4] : null;
+                try {
+                    task = new Event(des, eventFrom, eventTo);
+                } catch (DateTimeException e) {
+                    System.out.println("Error parsing event dates, task added without valid date.");
+                    task = new Event(des, null, null);  // Add without valid dates
                 }
                 break;
             default:
@@ -80,10 +117,12 @@ public class Storage {
         return tasks;
     }
 
-    public void save() throws IOException {
-        save(null);
-    }
-
+    /**
+     * Saves the provided list of tasks to the storage file.
+     *
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If an I/O error occurs during the saving process.
+     */
     public void save(List<Task> tasks) throws IOException {
         assert tasks != null : "Hey man, the task list should not be null.";
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
@@ -97,8 +136,8 @@ public class Storage {
     /**
      * Writes the tasks onto the file.
      *
-     * @param task which has been written
-     * @return task onto the handsome.txt file
+     * @param task The task which has been written.
+     * @return The string representation of task onto the handsome.txt file.
      */
     private String taskToFile(Task task) {
         StringBuilder storedTask = new StringBuilder();
@@ -113,13 +152,19 @@ public class Storage {
             storedTask.append("D");
             storedTask.append(" | ").append(task.isDone ? "1" : "0");
             storedTask.append(" | ").append(task.description);
-            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Deadline) task).by));
+            storedTask.append(" | ").append(((Deadline) task).by == null
+                                                                ? "Invalid"
+                                                                : DESIRED_FORMAT.format(((Deadline) task).by));
         } else if (task instanceof Event) {
             storedTask.append("E");
             storedTask.append(" | ").append(task.isDone ? "1" : "0");
             storedTask.append(" | ").append(task.description);
-            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Event) task).from));
-            storedTask.append(" | ").append(DESIRED_FORMAT.format(((Event) task).to));
+            storedTask.append(" | ").append(((Event) task).from == null
+                                                                ? "Invalid"
+                                                                : DESIRED_FORMAT.format(((Event) task).from));
+            storedTask.append(" | ").append(((Event) task).to == null
+                                                                ? "Invalid"
+                                                                : DESIRED_FORMAT.format(((Event) task).to));
         }
         return storedTask.toString();
     }

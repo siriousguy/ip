@@ -18,6 +18,8 @@ public abstract class Command {
      * @param tasks contains the tasklist that can be used by the user commands.
      * @param ui used for displaying messages.
      * @param storage storage object to load and save files.
+     * @param commandRecords A stack containing previous commands for undo functionality.
+     * @return A string representing the outcome of the command execution to the user.
      * @throws IOException in the event the operation fails.
      * @throws HandsomeException for errors specific to Handsome.
      */
@@ -30,6 +32,7 @@ public abstract class Command {
      * @param tasks contains the tasklist that can be used by the user commands.
      * @param ui used for displaying messages.
      * @param storage storage object to load and save files.
+     * @return A string representing the result of the undo operation to the user.
      * @throws IOException in the event the operation fails.
      * @throws HandsomeException for errors specific to Handsome.
      */

@@ -4,10 +4,21 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event task that has a description, a specified start date/time, and an end date/time.
+ * Both the start and end date/times must be provided in the "yyyy-MM-dd HHmm" format.
+ */
 public class Event extends Task {
     public LocalDateTime from;
     public LocalDateTime to;
 
+    /**
+     * Constructs an Event task with the specified description, start date/time, and end date/time.
+     *
+     * @param des The description of the event.
+     * @param from The start date/time in the "yyyy-MM-dd HHmm" format.
+     * @param to The end date/time in the "yyyy-MM-dd HHmm" format.
+     */
     public Event(String des, String from, String to) {
         super(des);
         try {
@@ -20,6 +31,12 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Returns a string representation of the Event task.
+     * If the date is not provided or incorrectly formatted, an error message is shown.
+     *
+     * @return A string representing the Event task.
+     */
     @Override
     public String toString() {
         DateTimeFormatter desiredFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");

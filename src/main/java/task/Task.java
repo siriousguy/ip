@@ -40,6 +40,11 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns a string representation of the task, including its status icon and description.
+     *
+     * @return A string representing the task.
+     */
     @Override
     public String toString() {
         return ("[" + this.getStatusIcon() + "] " + this.description);
