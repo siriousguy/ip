@@ -68,39 +68,24 @@ public class Storage {
                 task = new ToDo(des);
                 break;
             case "D":
-//                if (taskInfo.length > 3) {
-//                    task = new Deadline(des, taskInfo[3].equals("Invalid")
-//                                                ? null
-//                                                : taskInfo[3]);
-//                } else {
-//                    System.out.println("Hey man, I am missing info for deadline task in storage file.");
-//                    continue;
-//                }
-                String deadline = taskInfo.length > 3 ? taskInfo[3] : null;
+                String by = taskInfo.length > 3 ? taskInfo[3] : null;
+
                 try {
-                    task = new Deadline(des, deadline);
+                    task = new Deadline(des, by);
                 } catch (DateTimeException e) {
-                    System.out.println("Error parsing deadline date, task added without valid date.");
-                    task = new Deadline(des, null);  // Add without valid date
+                    System.out.println("Error as tasks are added without valid date.");
+                    task = new Deadline(des, null);
                 }
                 break;
             case "E":
-//                if (taskInfo.length > 4) {
-//                    task = new Event(des,
-//                                taskInfo[3].equals("Invalid") ? null : taskInfo[3],
-//                                taskInfo[4].equals("Invalid") ? null : taskInfo[4]);
-//                } else {
-//                    System.out.println("Hey man, I am missing info for event task data in storage file.");
-//                    continue;
-//                }
+                String from = taskInfo.length > 3 ? taskInfo[3] : null;
+                String to = taskInfo.length > 4 ? taskInfo[4] : null;
 
-                String eventFrom = taskInfo.length > 3 ? taskInfo[3] : null;
-                String eventTo = taskInfo.length > 4 ? taskInfo[4] : null;
                 try {
-                    task = new Event(des, eventFrom, eventTo);
+                    task = new Event(des, from, to);
                 } catch (DateTimeException e) {
-                    System.out.println("Error parsing event dates, task added without valid date.");
-                    task = new Event(des, null, null);  // Add without valid dates
+                    System.out.println("Error as tasks are added without valid date.");
+                    task = new Event(des, null, null);
                 }
                 break;
             default:
