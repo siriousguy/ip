@@ -64,6 +64,11 @@ public class DeleteCommand extends Command {
     @Override
     public String undo(TaskList tasks, Ui ui, Storage storage) throws IOException, HandsomeException {
         assert tasks != null : "Can't delete non existent things haha...";
+
+        if (taskNum < 0 || taskNum >= tasks.getTasksCount()) {
+            throw new HandsomeException("Hey buddy, I can't undo that deletion as the number is out of range.");
+        }
+
         String completed = tasks.addTaskAtIndex(taskNum);
         storage.save(tasks.getTasks());
         return completed;

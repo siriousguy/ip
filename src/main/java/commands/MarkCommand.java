@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.HandsomeException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -56,7 +57,11 @@ public class MarkCommand extends Command {
      * @throws IOException If an I/O error occurs while saving the task list.
      */
     @Override
-    public String undo(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String undo(TaskList tasks, Ui ui, Storage storage) throws IOException, HandsomeException {
+        if (taskNum < 0 || taskNum >= tasks.getTasksCount()) {
+            throw new HandsomeException("Hey buddy, I can't undo that mark command as the number is out of range.");
+        }
+
         String undo = tasks.markUndone(taskNum);
         storage.save(tasks.getTasks());
         return undo;
