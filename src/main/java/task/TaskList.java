@@ -131,4 +131,8 @@ public class TaskList {
     public List<Task> getTasks() {
         return this.tasks;
     }
+
+    public int getTasksCount() {
+        return this.tasks.size();
+    }
 }

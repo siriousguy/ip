@@ -32,14 +32,13 @@ public class DeadlineTest extends Task {
 
     @Test
     public void testInvalidDateParsing() {
-        DeadlineTest deadline = new DeadlineTest("Submit assignment", "1234");
-
+        var deadline = new Deadline("Submit assignment", "1234");
         assertNull(deadline.by, "The date should be null when parsing fails.");
     }
 
     @Test
     public void testToStringWithValidDate() {
-        DeadlineTest deadline = new DeadlineTest("Submit assignment", "2024-12-01 1800");
+        var deadline = new Deadline("Submit assignment", "2024-12-01 1800");
         String expectedOutput = "[D][ ] Submit assignment (by: Dec 01 2024 18:00)";
 
         assertEquals(expectedOutput, deadline.toString());

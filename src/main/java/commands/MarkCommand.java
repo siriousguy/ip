@@ -36,6 +36,10 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage, Stack<Command> commandRecords) throws IOException {
+        if (taskNum < 0 || taskNum >= tasks.getTasksCount()) {
+            return "Hey buddy, give me number between 1 and " + tasks.getTasksCount() + " okie?";
+        }
+
         String doneTask = tasks.markDone(taskNum);
         storage.save(tasks.getTasks());
         return doneTask;
