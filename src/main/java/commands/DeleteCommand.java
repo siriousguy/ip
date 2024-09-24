@@ -40,6 +40,11 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage,
                           Stack<Command> commandStack) throws IOException, HandsomeException {
         assert taskNum >= 0 && taskNum <= tasks.getTasks().size() : "Hey there, try a number within range?";
+
+        if (taskNum < 0 || taskNum >= tasks.getTasksCount()) {
+            return "Hey buddy, give me number between 1 and " + tasks.getTasksCount() + " okie?";
+        }
+
         String deletedTask = tasks.deleteCheck(this.taskNum);
         storage.save(tasks.getTasks());
         return deletedTask;

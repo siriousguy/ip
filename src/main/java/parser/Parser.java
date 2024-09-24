@@ -32,38 +32,64 @@ public class Parser {
                 return new ListCommand();
 
             case "mark":
+                if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                    throw new HandsomeException("Hey man... choose a number within the tasklist!");
+                }
+
                 return new MarkCommand(Integer.parseInt(specifiedInput[1]) - 1);
 
             case "unmark":
+                if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                    throw new HandsomeException("Hey man... choose a number within the tasklist!");
+                }
+
                 return new UnmarkCommand(Integer.parseInt(specifiedInput[1]) - 1);
 
             case "todo":
                 if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
                     throw new HandsomeException("Hey man... give me a descriptor to work with?");
                 }
+
                 return new AddCommand(new ToDo(specifiedInput[1]));
 
             case "deadline":
                 if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
                     throw new HandsomeException("Hey man... give me a descriptor to work with?");
                 }
+
                 String[] taskAndTime = specifiedInput[1].split(" /by ", 2);
+
+                if (taskAndTime.length < 2) {
+                    throw new HandsomeException("Hey man... do give me the deadline timing.");
+                }
+
                 return new AddCommand(new Deadline(taskAndTime[0], taskAndTime[1]));
 
             case "event":
                 if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
                     throw new HandsomeException("Hey man... give me a descriptor to work with?");
                 }
+
                 String[] fromAndTo = specifiedInput[1].split(" /from | /to ");
+
+                if (fromAndTo.length < 3) {
+                    throw new HandsomeException("Hey man... do give me the timings of the event.");
+                }
+
                 return new AddCommand(new Event(fromAndTo[0], fromAndTo[1], fromAndTo[2]));
 
             case "delete":
+                if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
+                    throw new HandsomeException("Hey man... choose a number within the tasklist!");
+                }
+
                 return new DeleteCommand(Integer.parseInt(specifiedInput[1]) - 1);
 
             case "find":
                 if (specifiedInput.length < 2 || specifiedInput[1].trim().isEmpty()) {
                     throw new HandsomeException("Hey.. please give me a keyword to search for.");
                 }
+
                 return new FindCommand(specifiedInput[1]);
 
             case "bye":
