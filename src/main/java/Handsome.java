@@ -82,7 +82,7 @@ public class Handsome {
                 return undoCommand.execute(tasks, ui, storage, commandRecords);
             } else {
                 String done = c.execute(tasks, ui, storage, commandRecords);
-                if (undoableCommand(c)) {
+                if (canUndo(c)) {
                     commandRecords.push(c);
                 }
                 return done;
@@ -100,7 +100,7 @@ public class Handsome {
      * @param c The command to check.
      * @return true if the command can be undone, false otherwise.
      */
-    private boolean undoableCommand(Command c) {
+    private boolean canUndo(Command c) {
         return c instanceof AddCommand ||
                c instanceof DeleteCommand ||
                c instanceof MarkCommand ||
